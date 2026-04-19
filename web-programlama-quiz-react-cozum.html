@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Programlama Quiz React Cozum</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-a: #0f2027;
+      --bg-b: #203a43;
+      --bg-c: #2c5364;
+      --paper: #f6f9fb;
+      --ink: #122532;
+      --soft: #385467;
+      --line: #d5dfe6;
+      --ok: #1a8c5f;
+      --accent: #ff8c42;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Outfit", sans-serif;
+      color: var(--ink);
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 10% 15%, rgba(255, 140, 66, 0.25), transparent 42%),
+        radial-gradient(circle at 90% 10%, rgba(26, 140, 95, 0.20), transparent 45%),
+        linear-gradient(135deg, var(--bg-a), var(--bg-b), var(--bg-c));
+      padding: 20px;
+    }
+
+    .app {
+      width: min(1080px, 100%);
+      margin: 0 auto;
+      background: var(--paper);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+    }
+
+    .hero {
+      background: linear-gradient(130deg, rgba(26, 140, 95, 0.16), rgba(255, 140, 66, 0.17));
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.4rem, 2.4vw, 2rem);
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      margin: 8px 0 0;
+      color: var(--soft);
+    }
+
+    .grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .q {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px;
+    }
+
+    .head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 7px;
+    }
+
+    .head h2 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .ok {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--ok);
+      border: 1px solid rgba(26, 140, 95, 0.32);
+      border-radius: 999px;
+      padding: 2px 8px;
+      background: rgba(26, 140, 95, 0.1);
+    }
+
+    .prompt {
+      margin: 0 0 6px;
+      color: var(--soft);
+      font-size: 0.94rem;
+    }
+
+    .ans {
+      margin: 0 0 10px;
+      color: #8f3f1c;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .split {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fbfdff;
+    }
+
+    .panel h3 {
+      margin: 0;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--soft);
+      padding: 8px 9px;
+      border-bottom: 1px solid var(--line);
+      background: #f2f7fb;
+    }
+
+    pre {
+      margin: 0;
+      padding: 10px;
+      overflow-x: auto;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.8rem;
+      line-height: 1.45;
+      color: #14354a;
+    }
+
+    .pv {
+      padding: 10px;
+      min-height: 54px;
+    }
+
+    button {
+      border: 1px solid #244d66;
+      background: #f6fbff;
+      color: #1b3d52;
+      border-radius: 8px;
+      padding: 7px 11px;
+      font-family: "Outfit", sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    input {
+      border: 1px solid #9fb8c9;
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-family: "Outfit", sans-serif;
+      width: 100%;
+      max-width: 260px;
+    }
+
+    .mono {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.86rem;
+    }
+
+    ul { margin: 7px 0; padding-left: 18px; }
+
+    @media (max-width: 650px) {
+      body { padding: 10px; }
+      .app { padding: 10px; border-radius: 14px; }
+      .hero { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function StudentCard(props) {
+      return <p>Ogrenci: {props.name}</p>;
+    }
+
+    function Welcome({ name }) {
+      return <h3 style={{ margin: 0 }}>Merhaba {name}</h3>;
+    }
+
+    function Child(props) {
+      return <button onClick={props.onShow}>Mesaj Goster</button>;
+    }
+
+    function Counter() {
+      const [count, setCount] = useState(0);
+      return (
+        <div>
+          <p>Sayac: {count}</p>
+          <button onClick={() => setCount(count + 1)}>Arttir</button>
+        </div>
+      );
+    }
+
+    function EventSample() {
+      const [logs, setLogs] = useState([]);
+      function handleClick() {
+        console.log("Butona basildi");
+        setLogs((prev) => [...prev, "Butona basildi"]);
+      }
+      return (
+        <div>
+          <button onClick={handleClick}>Tikla</button>
+          <ul>
+            {logs.map((x, i) => <li key={i}>{x}</li>)}
+          </ul>
+        </div>
+      );
+    }
+
+    function ConditionalSample() {
+      const [isLoggedIn, setIsLoggedIn] = useState(true);
+      return (
+        <div>
+          <button onClick={() => setIsLoggedIn((v) => !v)}>Durumu Degistir</button>
+          <p>{isLoggedIn ? "Hos geldiniz" : "Lutfen giris yapin"}</p>
+        </div>
+      );
+    }
+
+    function EffectSample() {
+      const [note, setNote] = useState("Bekleniyor...");
+      useEffect(() => {
+        console.log("Sayfa yuklendi");
+        setNote("Sayfa yuklendi");
+      }, []);
+      return <p className="mono">{note}</p>;
+    }
+
+    function InputSample() {
+      const [username, setUsername] = useState("");
+      return (
+        <div>
+          <input value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Kullanici adi" />
+          <p>Kullanici adi: {username || "(bos)"}</p>
+        </div>
+      );
+    }
+
+    function FruitsList() {
+      const fruits = ["Elma", "Armut", "Muz"];
+      return <ul>{fruits.map((fruit, index) => <li key={index}>{fruit}</li>)}</ul>;
+    }
+
+    function StudentsList() {
+      const students = [
+        { id: 1, name: "Ali" },
+        { id: 2, name: "Veli" },
+        { id: 3, name: "Ayse" }
+      ];
+      return <ul>{students.map((s) => <li key={s.id}>{s.name}</li>)}</ul>;
+    }
+
+    function ChildCallSample() {
+      function showMessage() {
+        alert("Merhaba");
+      }
+      return <Child onShow={showMessage} />;
+    }
+
+    const questions = [
+      {
+        id: 1,
+        title: "JSX degisken kullanimi",
+        prompt: "Bosluk name ile doldurulur.",
+        ans: "{name}",
+        code: `function App() {
+  const name = "Ayse";
+  return <h1>Merhaba, {name}</h1>;
+}`,
+        preview: () => {
+          const name = "Ayse";
+          return <h3 style={{ margin: 0 }}>Merhaba, {name}</h3>;
+        }
+      },
+      {
+        id: 2,
+        title: "Props ile veri gonderme",
+        prompt: "StudentCard props.name alir.",
+        ans: 'name="Zeynep"',
+        code: `function App() {
+  return <StudentCard name="Zeynep" />;
+}`,
+        preview: () => <StudentCard name="Zeynep" />
+      },
+      {
+        id: 3,
+        title: "useState ile sayac",
+        prompt: "State tanimi ve arttirma islemi.",
+        ans: "useState / setCount(count + 1)",
+        code: `const [count, setCount] = useState(0);
+<button onClick={() => setCount(count + 1)}>Arttir</button>`,
+        preview: () => <Counter />
+      },
+      {
+        id: 4,
+        title: "Olay yakalama",
+        prompt: "onClick icine handleClick referansi.",
+        ans: "handleClick",
+        code: `<button onClick={handleClick}>Tikla</button>`,
+        preview: () => <EventSample />
+      },
+      {
+        id: 5,
+        title: "Liste render",
+        prompt: "Dizi elemanlari map ile yazdirilir.",
+        ans: "map",
+        code: `{fruits.map((fruit, index) => <li key={index}>{fruit}</li>)}`,
+        preview: () => <FruitsList />
+      },
+      {
+        id: 6,
+        title: "Kosullu render",
+        prompt: "Ternary ile login durumuna gore metin.",
+        ans: "isLoggedIn",
+        code: `{isLoggedIn ? <p>Hos geldiniz</p> : <p>Lutfen giris yapin</p>}`,
+        preview: () => <ConditionalSample />
+      },
+      {
+        id: 7,
+        title: "useEffect ilk yukleme",
+        prompt: "Yalnizca ilk render icin bos dependency array.",
+        ans: "[]",
+        code: `useEffect(() => {
+  console.log("Sayfa yuklendi");
+}, []);`,
+        preview: () => <EffectSample />
+      },
+      {
+        id: 8,
+        title: "Kontrollu input",
+        prompt: "Input degeri state ile kontrol edilir.",
+        ans: "username / setUsername",
+        code: `value={username}
+onChange={(e) => setUsername(e.target.value)}`,
+        preview: () => <InputSample />
+      },
+      {
+        id: 9,
+        title: "Props destructuring",
+        prompt: "Welcome bileşeninde name destructuring.",
+        ans: "name",
+        code: `function Welcome({ name }) {
+  return <h2>Merhaba {name}</h2>;
+}`,
+        preview: () => <Welcome name="Mehmet" />
+      },
+      {
+        id: 10,
+        title: "Dogru key kullanimi",
+        prompt: "Liste key olarak id kullanir.",
+        ans: "key={student.id}",
+        code: `{students.map((student) => (
+  <li key={student.id}>{student.name}</li>
+))}`,
+        preview: () => <StudentsList />
+      },
+      {
+        id: 11,
+        title: "Child fonksiyon prop",
+        prompt: "Parent fonksiyonu child butonunda calisir.",
+        ans: "onShow / onShow={showMessage}",
+        code: `<button onClick={props.onShow}>Mesaj Goster</button>
+<Child onShow={showMessage} />`,
+        preview: () => <ChildCallSample />
+      },
+      {
+        id: 12,
+        title: "useState sayac tekrar",
+        prompt: "Soru 3 ile ayni cozum.",
+        ans: "useState / setCount(count + 1)",
+        code: `const [count, setCount] = useState(0);
+<button onClick={() => setCount(count + 1)}>Arttir</button>`,
+        preview: () => <Counter />
+      },
+      {
+        id: 13,
+        title: "Liste render tekrar",
+        prompt: "Map kullanilir.",
+        ans: "map",
+        code: `{fruits.map((fruit, index) => <li key={index}>{fruit}</li>)}`,
+        preview: () => <FruitsList />
+      },
+      {
+        id: 14,
+        title: "Kontrollu input tekrar",
+        prompt: "Username state ile baglanir.",
+        ans: "username / setUsername",
+        code: `value={username}
+onChange={(e) => setUsername(e.target.value)}`,
+        preview: () => <InputSample />
+      }
+    ];
+
+    function Card({ q }) {
+      const Pv = q.preview;
+      return (
+        <article className="q">
+          <div className="head">
+            <h2>Soru {q.id}: {q.title}</h2>
+            <span className="ok">Cozuldu</span>
+          </div>
+          <p className="prompt">{q.prompt}</p>
+          <p className="ans">Cevap: {q.ans}</p>
+          <div className="split">
+            <section className="panel">
+              <h3>Cozum Kodu</h3>
+              <pre>{q.code}</pre>
+            </section>
+            <section className="panel">
+              <h3>Canli Onizleme</h3>
+              <div className="pv"><Pv /></div>
+            </section>
+          </div>
+        </article>
+      );
+    }
+
+    function App() {
+      return (
+        <main className="app">
+          <section className="hero">
+            <h1>Web Programlama Quiz Sorulari - React Cozumleri</h1>
+            <p>
+              PDF icindeki 14 sorunun tamami React ile cozuldu ve tek bir calisan HTML dosyasina toplandi.
+            </p>
+          </section>
+          <section className="grid">
+            {questions.map((q) => <Card key={q.id} q={q} />)}
+          </section>
+        </main>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>
