@@ -1,0 +1,987 @@
+┌──(b23i㉿B23i)-[~]
+└─$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:21 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.14.138/24 brd 192.168.14.255 scope global dynamic noprefixroute eth0
+       valid_lft 1773sec preferred_lft 1773sec
+    inet6 fe80::20c:29ff:fe4a:6721/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:2b brd ff:ff:ff:ff:ff:ff
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip route
+default via 192.168.14.2 dev eth0 proto dhcp src 192.168.14.138 metric 100 
+192.168.14.0/24 dev eth0 proto kernel scope link src 192.168.14.138 metric 100 
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo ip addr                         
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping ostimteknik.edu.tr
+PING ostimteknik.edu.tr (10.10.1.239) 56(84) bytes of data.
+^C
+--- ostimteknik.edu.tr ping statistics ---
+9 packets transmitted, 0 received, 100% packet loss, time 9103ms
+
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 1.1.1.1           
+PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
+^C
+--- 1.1.1.1 ping statistics ---
+5 packets transmitted, 0 received, 100% packet loss, time 4551ms
+
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo ip addr add 192.168.50.1/24 dev eth1
+[sudo] password for b23i: 
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip a    
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:21 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.14.138/24 brd 192.168.14.255 scope global dynamic noprefixroute eth0
+       valid_lft 1304sec preferred_lft 1304sec
+    inet6 fe80::20c:29ff:fe4a:6721/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:2b brd ff:ff:ff:ff:ff:ff
+    inet 192.168.50.1/24 scope global eth1
+       valid_lft forever preferred_lft forever
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo ip link set eht1 up                 
+Cannot find device "eht1"
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo ip link set eth1 up
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 192.168.50.10      
+PING 192.168.50.10 (192.168.50.10) 56(84) bytes of data.
+^C
+--- 192.168.50.10 ping statistics ---
+119 packets transmitted, 0 received, 100% packet loss, time 137928ms
+
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ 
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip a   
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:21 brd ff:ff:ff:ff:ff:ff
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:2b brd ff:ff:ff:ff:ff:ff
+    inet6 fe80::20c:29ff:fe4a:672b/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:21 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.14.138/24 brd 192.168.14.255 scope global dynamic noprefixroute eth0
+       valid_lft 1798sec preferred_lft 1798sec
+    inet6 fe80::20c:29ff:fe4a:6721/64 scope link tentative noprefixroute 
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:2b brd ff:ff:ff:ff:ff:ff
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo ip addr add 192.168.50.1/24 dev eth1
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo ip link set eth1 up                 
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip a                                     
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:21 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.14.138/24 brd 192.168.14.255 scope global dynamic noprefixroute eth0
+       valid_lft 1786sec preferred_lft 1786sec
+    inet6 fe80::20c:29ff:fe4a:6721/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:2b brd ff:ff:ff:ff:ff:ff
+    inet 192.168.50.1/24 scope global eth1
+       valid_lft forever preferred_lft forever
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 192.168.50.10
+PING 192.168.50.10 (192.168.50.10) 56(84) bytes of data.
+^C
+--- 192.168.50.10 ping statistics ---
+98 packets transmitted, 0 received, 100% packet loss, time 110368ms
+
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 192.168.50.10
+PING 192.168.50.10 (192.168.50.10) 56(84) bytes of data.
+^C
+--- 192.168.50.10 ping statistics ---
+11 packets transmitted, 0 received, 100% packet loss, time 11391ms
+
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 192.168.50.10
+PING 192.168.50.10 (192.168.50.10) 56(84) bytes of data.
+^C
+--- 192.168.50.10 ping statistics ---
+12 packets transmitted, 0 received, 100% packet loss, time 12523ms
+
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip neigh
+192.168.50.10 dev eth1 lladdr 16:09:01:20:7e:4e STALE 
+192.168.14.2 dev eth0 lladdr 00:50:56:f3:51:4e STALE 
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip a    
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:21 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.14.138/24 brd 192.168.14.255 scope global dynamic noprefixroute eth0
+       valid_lft 1349sec preferred_lft 1349sec
+    inet6 fe80::20c:29ff:fe4a:6721/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:2b brd ff:ff:ff:ff:ff:ff
+    inet 192.168.50.1/24 scope global eth1
+       valid_lft forever preferred_lft forever
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ arp -a                            
+? (192.168.50.10) at 16:09:01:20:7e:4e [ether] on eth1
+? (192.168.14.2) at 00:50:56:f3:51:4e [ether] on eth0
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 192.168.50.10
+PING 192.168.50.10 (192.168.50.10) 56(84) bytes of data.
+64 bytes from 192.168.50.10: icmp_seq=1 ttl=128 time=1.52 ms
+64 bytes from 192.168.50.10: icmp_seq=2 ttl=128 time=1.95 ms
+64 bytes from 192.168.50.10: icmp_seq=3 ttl=128 time=2.27 ms
+64 bytes from 192.168.50.10: icmp_seq=4 ttl=128 time=1.69 ms
+64 bytes from 192.168.50.10: icmp_seq=5 ttl=128 time=1.73 ms
+64 bytes from 192.168.50.10: icmp_seq=6 ttl=128 time=2.15 ms
+64 bytes from 192.168.50.10: icmp_seq=7 ttl=128 time=1.55 ms
+64 bytes from 192.168.50.10: icmp_seq=8 ttl=128 time=2.11 ms
+64 bytes from 192.168.50.10: icmp_seq=9 ttl=128 time=1.78 ms
+64 bytes from 192.168.50.10: icmp_seq=10 ttl=128 time=1.79 ms
+64 bytes from 192.168.50.10: icmp_seq=11 ttl=128 time=1.71 ms
+64 bytes from 192.168.50.10: icmp_seq=12 ttl=128 time=1.53 ms
+64 bytes from 192.168.50.10: icmp_seq=13 ttl=128 time=1.87 ms
+64 bytes from 192.168.50.10: icmp_seq=14 ttl=128 time=2.15 ms
+64 bytes from 192.168.50.10: icmp_seq=15 ttl=128 time=2.28 ms
+64 bytes from 192.168.50.10: icmp_seq=16 ttl=128 time=1.99 ms
+64 bytes from 192.168.50.10: icmp_seq=17 ttl=128 time=1.97 ms
+64 bytes from 192.168.50.10: icmp_seq=18 ttl=128 time=1.79 ms
+64 bytes from 192.168.50.10: icmp_seq=19 ttl=128 time=1.83 ms
+64 bytes from 192.168.50.10: icmp_seq=20 ttl=128 time=2.10 ms
+64 bytes from 192.168.50.10: icmp_seq=21 ttl=128 time=2.05 ms
+64 bytes from 192.168.50.10: icmp_seq=22 ttl=128 time=1.82 ms
+64 bytes from 192.168.50.10: icmp_seq=23 ttl=128 time=2.22 ms
+64 bytes from 192.168.50.10: icmp_seq=24 ttl=128 time=1.89 ms
+64 bytes from 192.168.50.10: icmp_seq=25 ttl=128 time=1.75 ms
+64 bytes from 192.168.50.10: icmp_seq=26 ttl=128 time=1.79 ms
+64 bytes from 192.168.50.10: icmp_seq=27 ttl=128 time=1.44 ms
+64 bytes from 192.168.50.10: icmp_seq=28 ttl=128 time=1.63 ms
+64 bytes from 192.168.50.10: icmp_seq=29 ttl=128 time=2.32 ms
+64 bytes from 192.168.50.10: icmp_seq=30 ttl=128 time=1.99 ms
+64 bytes from 192.168.50.10: icmp_seq=31 ttl=128 time=1.94 ms
+64 bytes from 192.168.50.10: icmp_seq=32 ttl=128 time=1.85 ms
+64 bytes from 192.168.50.10: icmp_seq=33 ttl=128 time=2.04 ms
+64 bytes from 192.168.50.10: icmp_seq=34 ttl=128 time=2.04 ms
+^C
+--- 192.168.50.10 ping statistics ---
+34 packets transmitted, 34 received, 0% packet loss, time 36708ms
+rtt min/avg/max/mdev = 1.444/1.897/2.321/0.226 ms
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo syss                 
+[sudo] password for b23i: 
+Sorry, try again.
+[sudo] password for b23i: 
+sudo: 1 incorrect password attempt
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ 
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo sysctl -wn net.ipv4.ip_forward=1            
+[sudo] password for b23i: 
+1
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ cat /proc/sys/net/ipv4/ip_forward
+1
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:21 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.14.138/24 brd 192.168.14.255 scope global dynamic noprefixroute eth0
+       valid_lft 1632sec preferred_lft 1632sec
+    inet6 fe80::20c:29ff:fe4a:6721/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:2b brd ff:ff:ff:ff:ff:ff
+    inet 192.168.50.1/24 scope global eth1
+       valid_lft forever preferred_lft forever
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip route
+default via 192.168.14.2 dev eth0 proto dhcp src 192.168.14.138 metric 101 
+192.168.14.0/24 dev eth0 proto kernel scope link src 192.168.14.138 metric 101 
+192.168.50.0/24 dev eth1 proto kernel scope link src 192.168.50.1 
+                                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -t nat -A POSTROUTING -o eht0 -j MASQUERADE
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -A FORWARD -i eht1 -o eht0 -j ACCEPT       
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -A FORWARD -i eht0 -o eth1 -m state --state RELATED, ESTABLISHED -J ACCEPT
+iptables v1.8.11 (nf_tables): "--state" requires a list of states with no spaces, e.g. ESTABLISHED,RELATED
+Try `iptables -h' or 'iptables --help' for more information.
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -A FORWARD -i eht0 -o eth1 -m state --state RELATED,ESTABLISHED -J ACCEPT 
+iptables v1.8.11 (nf_tables): unknown option "-J"
+Try `iptables -h' or 'iptables --help' for more information.
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -A FORWARD -i eht0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 1.1.1.1      
+PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
+^C
+--- 1.1.1.1 ping statistics ---
+18 packets transmitted, 0 received, 100% packet loss, time 19345ms
+
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 1.1.1.1
+ping: connect: Network is unreachable
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 1.1.1.1
+ping: connect: Network is unreachable
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 192.168.50.10                                                                      
+ping: connect: Network is unreachable
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 192.168.50.10
+ping: connect: Network is unreachable
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ arp -a
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ arp -a
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ arp -a
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ arp -a
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 192.168.50.10
+PING 192.168.50.10 (192.168.50.10) 56(84) bytes of data.
+^C
+--- 192.168.50.10 ping statistics ---
+43 packets transmitted, 0 received, 100% packet loss, time 47766ms
+
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 192.168.50.10
+PING 192.168.50.10 (192.168.50.10) 56(84) bytes of data.
+^C
+--- 192.168.50.10 ping statistics ---
+2 packets transmitted, 0 received, 100% packet loss, time 1142ms
+
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 1.1.1.1      
+PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
+^C
+--- 1.1.1.1 ping statistics ---
+2 packets transmitted, 0 received, 100% packet loss, time 1121ms
+
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ arp -a      
+? (192.168.14.2) at 00:50:56:f3:51:4e [ether] on eth0
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip a    
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:21 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.14.138/24 brd 192.168.14.255 scope global dynamic noprefixroute eth0
+       valid_lft 1734sec preferred_lft 1734sec
+    inet6 fe80::20c:29ff:fe4a:6721/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:2b brd ff:ff:ff:ff:ff:ff
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:21 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.14.138/24 brd 192.168.14.255 scope global dynamic noprefixroute eth0
+       valid_lft 1715sec preferred_lft 1715sec
+    inet6 fe80::20c:29ff:fe4a:6721/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:2b brd ff:ff:ff:ff:ff:ff
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ 
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo ip addr add 192.168.50.1/24 dev eth1                                              
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo ip link set eth1 up                 
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip a                                     
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:21 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.14.138/24 brd 192.168.14.255 scope global dynamic noprefixroute eth0
+       valid_lft 1582sec preferred_lft 1582sec
+    inet6 fe80::20c:29ff:fe4a:6721/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:2b brd ff:ff:ff:ff:ff:ff
+    inet 192.168.50.1/24 scope global eth1
+       valid_lft forever preferred_lft forever
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 192.168.50.10
+PING 192.168.50.10 (192.168.50.10) 56(84) bytes of data.
+64 bytes from 192.168.50.10: icmp_seq=1 ttl=128 time=1.82 ms
+64 bytes from 192.168.50.10: icmp_seq=2 ttl=128 time=1.95 ms
+64 bytes from 192.168.50.10: icmp_seq=3 ttl=128 time=2.20 ms
+^C
+--- 192.168.50.10 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2224ms
+rtt min/avg/max/mdev = 1.819/1.990/2.200/0.157 ms
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sV   
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -F
+sudo iptables -t nat -F
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo sysctl -w net.ipv4.ip_forward=1
+net.ipv4.ip_forward = 1
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ cat /proc/sys/net/ipv4/ip_forward
+1
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
+sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPTsudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
+sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+Bad argument `iptables'
+Try `iptables -h' or 'iptables --help' for more information.
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
+sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip rout 
+default via 192.168.14.2 dev eth0 proto dhcp src 192.168.14.138 metric 101 
+192.168.14.0/24 dev eth0 proto kernel scope link src 192.168.14.138 metric 101 
+192.168.50.0/24 dev eth1 proto kernel scope link src 192.168.50.1 
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip route
+default via 192.168.14.2 dev eth0 proto dhcp src 192.168.14.138 metric 101 
+192.168.14.0/24 dev eth0 proto kernel scope link src 192.168.14.138 metric 101 
+192.168.50.0/24 dev eth1 proto kernel scope link src 192.168.50.1 
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 1.1.1.1      
+PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
+^C
+--- 1.1.1.1 ping statistics ---
+16 packets transmitted, 0 received, 100% packet loss, time 17059ms
+
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip route    
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip route
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ arp -a
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ arp -a
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip route    
+default via 192.168.14.2 dev eth0 proto dhcp src 192.168.14.138 metric 101 
+192.168.14.0/24 dev eth0 proto kernel scope link src 192.168.14.138 metric 101 
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo ip addr add 192.168.50.1/24 dev eth1                
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo ip link set eth1 up                 
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip route                                 
+default via 192.168.14.2 dev eth0 proto dhcp src 192.168.14.138 metric 101 
+192.168.14.0/24 dev eth0 proto kernel scope link src 192.168.14.138 metric 101 
+192.168.50.0/24 dev eth1 proto kernel scope link src 192.168.50.1 
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ arp -a
+? (192.168.50.10) at 16:09:01:20:7e:4e [ether] on eth1
+? (192.168.14.2) at 00:50:56:f3:51:4e [ether] on eth0
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip route
+default via 192.168.14.2 dev eth0 proto dhcp src 192.168.14.138 metric 101 
+192.168.14.0/24 dev eth0 proto kernel scope link src 192.168.14.138 metric 101 
+192.168.50.0/24 dev eth1 proto kernel scope link src 192.168.50.1 
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 1.1.1.1
+PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
+^C
+--- 1.1.1.1 ping statistics ---
+4 packets transmitted, 0 received, 100% packet loss, time 3413ms
+
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ 
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 192.168.14.2
+PING 192.168.14.2 (192.168.14.2) 56(84) bytes of data.
+64 bytes from 192.168.14.2: icmp_seq=1 ttl=128 time=0.292 ms
+64 bytes from 192.168.14.2: icmp_seq=2 ttl=128 time=0.336 ms
+64 bytes from 192.168.14.2: icmp_seq=3 ttl=128 time=0.185 ms
+64 bytes from 192.168.14.2: icmp_seq=4 ttl=128 time=0.165 ms
+64 bytes from 192.168.14.2: icmp_seq=5 ttl=128 time=0.197 ms
+64 bytes from 192.168.14.2: icmp_seq=6 ttl=128 time=0.172 ms
+64 bytes from 192.168.14.2: icmp_seq=7 ttl=128 time=0.174 ms
+64 bytes from 192.168.14.2: icmp_seq=8 ttl=128 time=0.102 ms
+64 bytes from 192.168.14.2: icmp_seq=9 ttl=128 time=0.154 ms
+64 bytes from 192.168.14.2: icmp_seq=10 ttl=128 time=0.145 ms
+64 bytes from 192.168.14.2: icmp_seq=11 ttl=128 time=0.138 ms
+64 bytes from 192.168.14.2: icmp_seq=12 ttl=128 time=0.103 ms
+64 bytes from 192.168.14.2: icmp_seq=13 ttl=128 time=0.149 ms
+64 bytes from 192.168.14.2: icmp_seq=14 ttl=128 time=0.164 ms
+64 bytes from 192.168.14.2: icmp_seq=15 ttl=128 time=0.212 ms
+64 bytes from 192.168.14.2: icmp_seq=16 ttl=128 time=0.188 ms
+64 bytes from 192.168.14.2: icmp_seq=17 ttl=128 time=0.177 ms
+^C
+--- 192.168.14.2 ping statistics ---
+17 packets transmitted, 17 received, 0% packet loss, time 18206ms
+rtt min/avg/max/mdev = 0.102/0.179/0.336/0.057 ms
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 192.168.14.138
+PING 192.168.14.138 (192.168.14.138) 56(84) bytes of data.
+64 bytes from 192.168.14.138: icmp_seq=1 ttl=64 time=0.932 ms
+64 bytes from 192.168.14.138: icmp_seq=2 ttl=64 time=0.017 ms
+64 bytes from 192.168.14.138: icmp_seq=3 ttl=64 time=0.028 ms
+64 bytes from 192.168.14.138: icmp_seq=4 ttl=64 time=0.037 ms
+64 bytes from 192.168.14.138: icmp_seq=5 ttl=64 time=0.034 ms
+^C
+--- 192.168.14.138 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4507ms
+rtt min/avg/max/mdev = 0.017/0.209/0.932/0.361 ms
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 1.1.1.1       
+PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
+^C
+--- 1.1.1.1 ping statistics ---
+48 packets transmitted, 0 received, 100% packet loss, time 53459ms
+
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping 1.1.1.1
+PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
+sudo systemctl restart NetworkManager
+sudo dhclient -r eth0
+sudo dhclient eth0^C
+--- 1.1.1.1 ping statistics ---
+225 packets transmitted, 0 received, 100% packet loss, time 254849ms
+
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ 
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo systemctl restart NetworkManager
+sudo dhclient -r eth0
+sudo dhclient eth0
+sudo: dhclient: command not found
+sudo: dhclient: command not found
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo apt update
+sudo apt install isc-dhcp-client -y
+Ign:1 http://mirrors.netix.net/kali kali-rolling InRelease
+Ign:1 http://mirrors.netix.net/kali kali-rolling InRelease
+Ign:1 http://mirrors.netix.net/kali kali-rolling InRelease
+Err:1 http://mirrors.netix.net/kali kali-rolling InRelease
+  Could not connect to mirrors.netix.net:80 (87.121.121.4). - connect (111: Connection refused)
+  Unable to connect to mirrors.netix.net:http:
+24 packages can be upgraded. Run 'apt list --upgradable' to see them.
+Warning: Failed to fetch http://http.kali.org/kali/dists/kali-rolling/InRelease  Unable to connect to mirrors.netix.net:http:
+Warning: Some index files failed to download. They have been ignored, or old ones used instead.
+The following packages were automatically installed and are no longer required:
+  amass-common              libgpgmepp6t64          libsigsegv2                python3-kismetcapturebtgeiger
+  curlftpfs                 libhdf4-0-alt           libslang2-dev              python3-kismetcapturefreaklabszigbee
+  firmware-ti-connectivity  libinstpatch-1.0-2      libsnmp40t64               python3-kismetcapturertl433
+  gir1.2-girepository-2.0   libjs-jquery-ui         libsoup-2.4-1              python3-kismetcapturertladsb
+  libarmadillo14            libjs-underscore        libsoup2.4-common          python3-kismetcapturertlamr
+  libaudio2                 libmjpegutils-2.1-0t64  libsqlcipher1              python3-packaging-whl
+  libbson-1.0-0t64          libmongoc-1.0-0t64      libtheora0                 python3-protobuf
+  libcaca-dev               libmpeg2encpp-2.1-0t64  libvdpau-va-gl1            python3-pyinstaller-hooks-contrib
+  libconfig-inifiles-perl   libmplex2-2.1-0t64      libwireshark18             python3-pysmi
+  libdisplay-info2          libmupdf25.1            libwiretap15               python3-wheel-whl
+  libfuse2t64               libnet1                 libwsutil16                python3-yaswfp
+  libgav1-1                 libobjc-14-dev          linux-image-6.12.25-arm64  python3-zombie-imp
+  libgdal36                 libogdi4.1              mesa-vdpau-drivers         ruby-unf-ext
+  libgdata-common           libportmidi0            python3-bluepy             samba-ad-dc
+  libgdata22                libqt5ct-common1.8      python3-click-plugins      samba-ad-provision
+  libgeos3.13.1             libradare2-5.0.0t64     python3-fs                 samba-dsdb-modules
+  libgpgme11t64             libsframe1              python3-gpg                vdpau-driver-all
+Use 'sudo apt autoremove' to remove them.
+
+Installing:
+  isc-dhcp-client
+                                                                                                                                               
+Installing dependencies:
+  isc-dhcp-common
+                                                                                                                                               
+Suggested packages:
+  resolvconf  avahi-autoipd  isc-dhcp-client-ddns
+
+Summary:
+  Upgrading: 0, Installing: 2, Removing: 0, Not Upgrading: 24
+  Download size: 1,119 kB
+  Space needed: 3,086 kB / 26.5 GB available
+
+Get:1 http://mirror.telepoint.bg/kali kali-rolling/main arm64 isc-dhcp-client arm64 4.4.3-P1-8 [1,001 kB]
+Err:1 http://mirror.telepoint.bg/kali kali-rolling/main arm64 isc-dhcp-client arm64 4.4.3-P1-8
+  File has unexpected size (6154 != 1000784). Mirror sync in progress? [IP: 78.128.80.70 80]
+  Hashes of expected file:
+   - SHA256:f852124cc03a8d5f72020ab705d57bf49312b946a02a5ff311717fe46504ee00
+   - SHA1:5aba9574fad3bff1bc901c355d8c22b7aea66843 [weak]
+   - MD5Sum:c64e313089a7648d68c9a81d0aacc1cd [weak]
+   - Filesize:1000784 [weak]
+Get:2 http://kali.download/kali kali-rolling/main arm64 isc-dhcp-common arm64 4.4.3-P1-8 [118 kB]
+Fetched 118 kB in 1s (153 kB/s)         
+Error: Failed to fetch http://mirror.telepoint.bg/kali/pool/main/i/isc-dhcp/isc-dhcp-client_4.4.3-P1-8_arm64.deb  File has unexpected size (6154 != 1000784). Mirror sync in progress? [IP: 78.128.80.70 80]
+   Hashes of expected file:
+    - SHA256:f852124cc03a8d5f72020ab705d57bf49312b946a02a5ff311717fe46504ee00
+    - SHA1:5aba9574fad3bff1bc901c355d8c22b7aea66843 [weak]
+    - MD5Sum:c64e313089a7648d68c9a81d0aacc1cd [weak]
+    - Filesize:1000784 [weak]
+Error: Unable to fetch some archives, maybe run apt update or try with --fix-missing?
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ 
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ^[[200~sudo nano /etc/apt/sources.list~
+zsh: bad pattern: ^[[200~sudo
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo nano /etc/apt/sources.list
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo apt clean
+sudo rm -rf /var/lib/apt/lists/*
+sudo apt update
+sudo apt install isc-dhcp-client -y
+Ign:1 http://mirror.telepoint.bg/kali kali-rolling InRelease
+Ign:1 http://mirror.telepoint.bg/kali kali-rolling InRelease
+Get:1 http://mirror.telepoint.bg/kali kali-rolling InRelease [6,125 B]
+Ign:1 http://mirror.telepoint.bg/kali kali-rolling InRelease
+Get:1 http://mirror.telepoint.bg/kali kali-rolling InRelease [6,125 B]
+Err:1 http://mirror.telepoint.bg/kali kali-rolling InRelease
+  Connection failed [IP: 78.128.80.70 80]
+  Error reading from server - read (104: Connection reset by peer) [IP: 78.128.80.70 80]
+All packages are up to date.    
+Warning: Failed to fetch http://http.kali.org/kali/dists/kali-rolling/InRelease  Error reading from server - read (104: Connection reset by peer) [IP: 78.128.80.70 80]
+Warning: Some index files failed to download. They have been ignored, or old ones used instead.
+Error: Unable to locate package isc-dhcp-client
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ which dhclient
+dhclient --version
+dhclient not found
+Command 'dhclient' not found, but can be installed with:
+sudo apt install isc-dhcp-client     
+sudo apt install isc-dhcp-client-ddns
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo apt update --fix-missing
+sudo apt install isc-dhcp-client --fix-missing
+Get:1 http://kali.download/kali kali-rolling InRelease [34.0 kB]
+Get:2 http://kali.download/kali kali-rolling/non-free-firmware Sources [11.3 kB]
+Get:3 http://kali.download/kali kali-rolling/main Sources [17.5 MB]
+Get:4 http://kali.download/kali kali-rolling/non-free Sources [118 kB]
+Get:5 http://kali.download/kali kali-rolling/contrib Sources [82.7 kB]
+Get:6 http://kali.download/kali kali-rolling/main arm64 Packages [20.7 MB]
+Get:7 http://kali.download/kali kali-rolling/main arm64 Contents (deb) [49.5 MB]                                                              
+Get:8 http://kali.download/kali kali-rolling/contrib arm64 Packages [102 kB]                                                                  
+Get:9 http://kali.download/kali kali-rolling/contrib arm64 Contents (deb) [179 kB]                                                            
+Get:10 http://kali.download/kali kali-rolling/non-free arm64 Packages [149 kB]                                                                
+Get:11 http://kali.download/kali kali-rolling/non-free arm64 Contents (deb) [877 kB]                                                          
+Get:12 http://kali.download/kali kali-rolling/non-free-firmware arm64 Packages [14.5 kB]                                                      
+Get:13 http://kali.download/kali kali-rolling/non-free-firmware arm64 Contents (deb) [37.8 kB]                                                
+Fetched 89.3 MB in 17s (5,210 kB/s)                                                                                                           
+2026 packages can be upgraded. Run 'apt list --upgradable' to see them.
+The following packages were automatically installed and are no longer required:
+  amass-common              libgpgmepp6t64          libsigsegv2                python3-kismetcapturebtgeiger
+  curlftpfs                 libhdf4-0-alt           libslang2-dev              python3-kismetcapturefreaklabszigbee
+  firmware-ti-connectivity  libinstpatch-1.0-2      libsnmp40t64               python3-kismetcapturertl433
+  gir1.2-girepository-2.0   libjs-jquery-ui         libsoup-2.4-1              python3-kismetcapturertladsb
+  libarmadillo14            libjs-underscore        libsoup2.4-common          python3-kismetcapturertlamr
+  libaudio2                 libmjpegutils-2.1-0t64  libsqlcipher1              python3-packaging-whl
+  libbson-1.0-0t64          libmongoc-1.0-0t64      libtheora0                 python3-protobuf
+  libcaca-dev               libmpeg2encpp-2.1-0t64  libvdpau-va-gl1            python3-pyinstaller-hooks-contrib
+  libconfig-inifiles-perl   libmplex2-2.1-0t64      libwireshark18             python3-pysmi
+  libdisplay-info2          libmupdf25.1            libwiretap15               python3-wheel-whl
+  libfuse2t64               libnet1                 libwsutil16                python3-yaswfp
+  libgav1-1                 libobjc-14-dev          linux-image-6.12.25-arm64  python3-zombie-imp
+  libgdal36                 libogdi4.1              mesa-vdpau-drivers         ruby-unf-ext
+  libgdata-common           libportmidi0            python3-bluepy             samba-ad-dc
+  libgdata22                libqt5ct-common1.8      python3-click-plugins      samba-ad-provision
+  libgeos3.13.1             libradare2-5.0.0t64     python3-fs                 samba-dsdb-modules
+  libgpgme11t64             libsframe1              python3-gpg                vdpau-driver-all
+Use 'sudo apt autoremove' to remove them.
+
+Installing:
+  isc-dhcp-client
+                                                                                                                                               
+Installing dependencies:
+  isc-dhcp-common
+                                                                                                                                               
+Suggested packages:
+  resolvconf  avahi-autoipd  isc-dhcp-client-ddns
+
+Summary:
+  Upgrading: 0, Installing: 2, Removing: 0, Not Upgrading: 2026
+  Download size: 1,119 kB
+  Space needed: 3,086 kB / 26.6 GB available
+
+Continue? [Y/n] Y
+Get:1 http://kali.download/kali kali-rolling/main arm64 isc-dhcp-client arm64 4.4.3-P1-8 [1,001 kB]
+Get:2 http://kali.download/kali kali-rolling/main arm64 isc-dhcp-common arm64 4.4.3-P1-8 [118 kB]
+Fetched 1,119 kB in 1s (1,772 kB/s)      
+Selecting previously unselected package isc-dhcp-client.
+(Reading database… 465911 files and directories currently installed.)
+Preparing to unpack …/isc-dhcp-client_4.4.3-P1-8_arm64.deb…
+Unpacking isc-dhcp-client (4.4.3-P1-8)…
+Selecting previously unselected package isc-dhcp-common.
+Preparing to unpack …/isc-dhcp-common_4.4.3-P1-8_arm64.deb…
+Unpacking isc-dhcp-common (4.4.3-P1-8)…
+Setting up isc-dhcp-client (4.4.3-P1-8)…
+Setting up isc-dhcp-common (4.4.3-P1-8)…
+Processing triggers for man-db (2.13.1-1+b1)…
+Processing triggers for kali-menu (2026.1.3)…
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo systemctl restart NetworkManager
+sudo dhclient -r eth0
+sudo dhclient eth0
+Error: ipv4: Address already assigned.
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ 
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo ip addr flush dev eth0
+sudo dhclient -r eth0
+sudo dhclient eth0
+Killed old client process
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip a    
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:21 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.14.138/24 brd 192.168.14.255 scope global dynamic eth0
+       valid_lft 1737sec preferred_lft 1737sec
+    inet6 fe80::20c:29ff:fe4a:6721/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:4a:67:2b brd ff:ff:ff:ff:ff:ff
+    inet 192.168.50.1/24 scope global eth1
+       valid_lft forever preferred_lft forever
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip route
+default via 192.168.14.2 dev eth0 
+default via 192.168.14.2 dev eth0 proto dhcp src 192.168.14.138 metric 101 
+192.168.14.0/24 dev eth0 proto kernel scope link src 192.168.14.138 
+192.168.14.0/24 dev eth0 proto kernel scope link src 192.168.14.138 metric 101 
+192.168.50.0/24 dev eth1 proto kernel scope link src 192.168.50.1 
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo ip route del default via 192.168.14.2 dev eth0
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ip route
+default via 192.168.14.2 dev eth0 proto dhcp src 192.168.14.138 metric 101 
+192.168.14.0/24 dev eth0 proto kernel scope link src 192.168.14.138 
+192.168.14.0/24 dev eth0 proto kernel scope link src 192.168.14.138 metric 101 
+192.168.50.0/24 dev eth1 proto kernel scope link src 192.168.50.1 
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping -c 4 192.168.14.2
+ping -c 4 1.1.1.1
+PING 192.168.14.2 (192.168.14.2) 56(84) bytes of data.
+64 bytes from 192.168.14.2: icmp_seq=1 ttl=128 time=0.557 ms
+64 bytes from 192.168.14.2: icmp_seq=2 ttl=128 time=0.257 ms
+64 bytes from 192.168.14.2: icmp_seq=3 ttl=128 time=0.268 ms
+64 bytes from 192.168.14.2: icmp_seq=4 ttl=128 time=0.277 ms
+
+--- 192.168.14.2 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3409ms
+rtt min/avg/max/mdev = 0.257/0.339/0.557/0.125 ms
+PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
+
+--- 1.1.1.1 ping statistics ---
+4 packets transmitted, 0 received, 100% packet loss, time 3411ms
+
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ 
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ curl -I http://example.com
+HTTP/1.1 200 OK
+Date: Thu, 14 May 2026 08:58:31 GMT
+Content-Type: text/html
+Connection: keep-alive
+Server: cloudflare
+Last-Modified: Mon, 11 May 2026 20:01:07 GMT
+Allow: GET, HEAD
+Accept-Ranges: bytes
+Age: 12523
+cf-cache-status: HIT
+CF-RAY: 9fb8b3992f3f7a40-DUS
+
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ ping example.com      
+PING example.com (104.20.23.154) 56(84) bytes of data.
+^C
+--- example.com ping statistics ---
+23 packets transmitted, 0 received, 100% packet loss, time 25025ms
+
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ 
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -F
+sudo iptables -t nat -F
+
+sudo sysctl -w net.ipv4.ip_forward=1
+
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
+sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+net.ipv4.ip_forward = 1
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ curl http://example.com
+curl: (7) Failed to connect to example.com port 80 after 4 ms: Could not connect to server
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -P INPUT ACCEPT
+sudo iptables -P OUTPUT ACCEPT
+sudo iptables -P FORWARD ACCEPT
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -F             
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -t nat -F                                  
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -P INPUT ACCEPT 
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -P OUTPUT ACCEPT
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -P FORWARD ACCEPT
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo sysctl -w net.ipv4.ip_forward=1 
+net.ipv4.ip_forward = 1
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT                                     
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED, ESTABLISHED -j ACCEPT 
+iptables v1.8.11 (nf_tables): "--state" requires a list of states with no spaces, e.g. ESTABLISHED,RELATED
+Try `iptables -h' or 'iptables --help' for more information.
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT  
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ curl -4 -I http://example.com
+HTTP/1.1 200 OK
+Date: Thu, 14 May 2026 09:06:16 GMT
+Content-Type: text/html
+Connection: keep-alive
+Server: cloudflare
+Last-Modified: Mon, 11 May 2026 20:01:07 GMT
+Allow: GET, HEAD
+Accept-Ranges: bytes
+Age: 12988
+cf-cache-status: HIT
+CF-RAY: 9fb8bef6bef2f803-DUS
+
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ nslookup example.com
+curl http://example.com
+;; Got recursion not available from 192.168.14.2
+Server:         192.168.14.2
+Address:        192.168.14.2#53
+
+Name:   example.com
+Address: 104.20.23.154
+;; Got recursion not available from 192.168.14.2
+Name:   example.com
+Address: 104.20.23.154
+
+<!doctype html><html lang="en"><head><title>Example Domain</title><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{background:#eee;width:60vw;margin:15vh auto;font-family:system-ui,sans-serif}h1{font-size:1.5em}div{opacity:0.8}a:link,a:visited{color:#348}</style></head><body><div><h1>Example Domain</h1><p>This domain is for use in documentation examples without needing permission. Avoid use in op
+
+tcpdump: listening on eth1, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+^C16 packets captured
+16 packets received by filter
+0 packets dropped by kernel
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo tcpdump -i eth1 -w defansifblog/windows_arasi_trafik.pcap 
+tcpdump: listening on eth1, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+^C2740 packets captured
+2749 packets received by filter
+0 packets dropped by kernel
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo tcpdump -i eth1 -w defansifblog/443_basit_windows_arasi_trafik.pcap
+[sudo] password for b23i: 
+tcpdump: listening on eth1, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+^C260 packets captured
+261 packets received by filter
+0 packets dropped by kernel
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo tcpdump -i eth1 -w defansifblog/port_denem_baglantisi_windows_arasi_trafik.pcap
+tcpdump: listening on eth1, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+^C1582 packets captured
+1584 packets received by filter
+0 packets dropped by kernel
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ sudo tcpdump -i eth1 -w uygulama_trafik_analizi.pcap
+tcpdump: listening on eth1, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+^C756 packets captured
+758 packets received by filter
+0 packets dropped by kernel
+                                                                                                                                               
+┌──(b23i㉿B23i)-[~]
+└─$ 
